@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AprovaFundamental - PWA para estudos do Ensino Fundamental">
+    <meta name="theme-color" content="#6366F1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%236366F1' width='192' height='192'/><text x='96' y='120' font-size='100' fill='white' text-anchor='middle' font-weight='bold'>AF</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%236366F1' width='192' height='192'/><text x='96' y='120' font-size='100' fill='white' text-anchor='middle' font-weight='bold'>AF</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <title>AprovaFundamental - Estudos para Concursos</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>📚 AprovaFundamental</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn-settings" id="btnSettings">⚙️</button>
+                <button class="btn-offline" id="btnOffline" style="display:none;">📡</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- HOME PAGE -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h2>Bem-vindo ao AprovaFundamental! 🎓</h2>
+                <p>Estude Ensino Fundamental para concursos PMMG, IBFC e outras bancas</p>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalQuestions">0</div>
+                    <div class="stat-label">Questões Resolvidas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalAccuracy">0%</div>
+                    <div class="stat-label">Taxa de Acerto</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalDays">0</div>
+                    <div class="stat-label">Dias de Estudo</div>
+                </div>
+            </div>
+
+            <div class="subjects-grid">
+                <div class="subject-card" data-subject="portuguese">
+                    <div class="subject-icon">🇵🇹</div>
+                    <h3>Português</h3>
+                    <p>Interpretação, Gramática e Ortografia</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressPortuguese" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text" id="progressTextPortuguese">0%</span>
+                </div>
+
+                <div class="subject-card" data-subject="math">
+                    <div class="subject-icon">🔢</div>
+                    <h3>Matemática</h3>
+                    <p>Operações, Medidas e Frações</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressMath" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text" id="progressTextMath">0%</span>
+                </div>
+
+                <div class="subject-card" data-subject="general">
+                    <div class="subject-icon">🌎</div>
+                    <h3>Conhecimentos Gerais</h3>
+                    <p>Geografia do Brasil e Minas Gerais</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressGeneral" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text" id="progressTextGeneral">0%</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="btnStartQuiz">📝 Começar Exercícios</button>
+                <button class="btn btn-secondary" id="btnReview">🧠 Revisão Inteligente</button>
+                <button class="btn btn-secondary" id="btnSimulado">🎯 Simulado Completo</button>
+                <button class="btn btn-secondary" id="btnPlanner">📅 Planejador</button>
+            </div>
+        </section>
+
+        <!-- PORTUGUESE PAGE -->
+        <section id="portuguese" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackPortuguese">← Voltar</button>
+                <h2>🇵🇹 Português</h2>
+            </div>
+
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="lessons">📖 Aulas</button>
+                <button class="tab-btn" data-tab="exercises">📝 Exercícios</button>
+            </div>
+
+            <div id="lessons" class="tab-content active">
+                <div class="lessons-list" id="portugueseLessons">
+                    <!-- Preenchido por JavaScript -->
+                </div>
+            </div>
+
+            <div id="exercises" class="tab-content">
+                <button class="btn btn-primary" id="btnPortugueseQuiz">Iniciar Exercícios de Português</button>
+                <div id="portugueseExercises"></div>
+            </div>
+        </section>
+
+        <!-- MATH PAGE -->
+        <section id="math" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackMath">← Voltar</button>
+                <h2>🔢 Matemática</h2>
+            </div>
+
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="lessons">📖 Aulas</button>
+                <button class="tab-btn" data-tab="exercises">📝 Exercícios</button>
+            </div>
+
+            <div id="lessons" class="tab-content active">
+                <div class="lessons-list" id="mathLessons">
+                    <!-- Preenchido por JavaScript -->
+                </div>
+            </div>
+
+            <div id="exercises" class="tab-content">
+                <button class="btn btn-primary" id="btnMathQuiz">Iniciar Exercícios de Matemática</button>
+                <div id="mathExercises"></div>
+            </div>
+        </section>
+
+        <!-- GENERAL KNOWLEDGE PAGE -->
+        <section id="general" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackGeneral">← Voltar</button>
+                <h2>🌎 Conhecimentos Gerais</h2>
+            </div>
+
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="lessons">📖 Aulas</button>
+                <button class="tab-btn" data-tab="exercises">📝 Exercícios</button>
+            </div>
+
+            <div id="lessons" class="tab-content active">
+                <div class="lessons-list" id="generalLessons">
+                    <!-- Preenchido por JavaScript -->
+                </div>
+            </div>
+
+            <div id="exercises" class="tab-content">
+                <button class="btn btn-primary" id="btnGeneralQuiz">Iniciar Exercícios de Conhecimentos Gerais</button>
+                <div id="generalExercises"></div>
+            </div>
+        </section>
+
+        <!-- QUIZ PAGE -->
+        <section id="quiz" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackQuiz">← Voltar</button>
+                <div class="quiz-info">
+                    <span id="questionNumber">1/10</span>
+                    <span id="questionTimer">00:00</span>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div id="questionContainer">
+                    <!-- Preenchido por JavaScript -->
+                </div>
+                <div class="quiz-actions">
+                    <button class="btn btn-secondary" id="btnSkipQuestion">Pular</button>
+                    <button class="btn btn-primary" id="btnAnswerQuestion">Responder</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- REVIEW PAGE -->
+        <section id="review" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackReview">← Voltar</button>
+                <h2>🧠 Revisão Inteligente</h2>
+            </div>
+
+            <div class="review-container">
+                <p class="info-text">Revise as questões que você errou mais frequentemente</p>
+                <button class="btn btn-primary" id="btnStartReview">Começar Revisão</button>
+                <div id="reviewContent"></div>
+            </div>
+        </section>
+
+        <!-- SIMULADO PAGE -->
+        <section id="simulado" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackSimulado">← Voltar</button>
+                <h2>🎯 Simulado Completo</h2>
+            </div>
+
+            <div class="simulado-container">
+                <div class="simulado-info">
+                    <p>Teste seus conhecimentos em um simulado completo estilo IBFC</p>
+                    <p>Total de questões: <strong id="simuladoTotal">50</strong></p>
+                    <p>Tempo: <strong>2 horas</strong></p>
+                </div>
+                <button class="btn btn-primary" id="btnStartSimulado">🚀 Iniciar Simulado</button>
+                <div id="simuladoContent"></div>
+            </div>
+        </section>
+
+        <!-- PLANNER PAGE -->
+        <section id="planner" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackPlanner">← Voltar</button>
+                <h2>📅 Planejador de Estudos</h2>
+            </div>
+
+            <div class="planner-container">
+                <div class="planner-form">
+                    <input type="text" id="plannerTaskInput" placeholder="Adicionar nova tarefa...">
+                    <button class="btn btn-primary" id="btnAddTask">Adicionar</button>
+                </div>
+                <div class="tasks-list" id="plannerTasks">
+                    <!-- Preenchido por JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SETTINGS PAGE -->
+        <section id="settings" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackSettings">← Voltar</button>
+                <h2>⚙️ Configurações</h2>
+            </div>
+
+            <div class="settings-container">
+                <div class="settings-group">
+                    <h3>Aparência</h3>
+                    <label>
+                        <input type="checkbox" id="darkMode"> Modo Escuro
+                    </label>
+                    <label>
+                        <input type="checkbox" id="soundEnabled" checked> Som ativado
+                    </label>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Dados</h3>
+                    <button class="btn btn-secondary" id="btnExportData">📥 Exportar Dados</button>
+                    <button class="btn btn-secondary" id="btnClearData">🗑️ Limpar Progresso</button>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Sobre</h3>
+                    <p>AprovaFundamental v1.0</p>
+                    <p>PWA para estudos de Ensino Fundamental</p>
+                </div>
+
+                <div class="install-pwa" id="installPrompt" style="display:none;">
+                    <h3>📱 Instalar Aplicativo</h3>
+                    <button class="btn btn-primary" id="btnInstallPWA">Instalar no celular</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTS PAGE -->
+        <section id="results" class="page">
+            <div class="page-header">
+                <button class="btn-back" id="btnBackResults">← Home</button>
+                <h2>📊 Resultados</h2>
+            </div>
+
+            <div class="results-container">
+                <div class="result-score">
+                    <div class="score-circle" id="scoreCircle">0%</div>
+                </div>
+
+                <div class="result-details" id="resultDetails">
+                    <!-- Preenchido por JavaScript -->
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="btnReviewAnswers">📋 Revisar Respostas</button>
+                    <button class="btn btn-secondary" id="btnBackHome">🏠 Voltar para Home</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL PARA RESPOSTA -->
+    <div id="answerModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <button class="btn-close" id="btnCloseModal">✕</button>
+            <div id="answerExplanation">
+                <!-- Preenchido por JavaScript -->
+            </div>
+            <button class="btn btn-primary" id="btnNextQuestion">Próxima Questão →</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="database.js"></script>
+    <script src="questoes.js"></script>
+    <script src="app.js"></script>
+
+    <script>
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        }
+
+        // Instalar PWA
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installPrompt').style.display = 'block';
+        });
+
+        document.getElementById('btnInstallPWA')?.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt = null;
+            }
+        });
+    </script>
+</body>
+</html>
